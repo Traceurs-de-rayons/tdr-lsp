@@ -1,0 +1,55 @@
+{
+  "name": "tdr-scene-language",
+  "displayName": "TDR Scene Language Support",
+  "repository": "https://github.com/Traceurs-de-rayons/tdr-lsp.git",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "activationEvents": [
+    "onLanguage:scene"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "scene",
+        "extensions": [
+          ".tdr",
+          ".traceurs-de-rayons",
+          ".paf"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "scene",
+        "scopeName": "text.scene",
+        "path": "./syntaxes/scene.tmLanguage.json"
+      }
+    ]
+  },
+  "files": [
+    "out/**",
+    "syntaxes/**",
+    "language-configuration.json",
+    "bin/**",
+    "node_modules/**",
+    "LICENSE.md"
+  ],
+  "scripts": {
+    "compile": "tsc -p ./"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^8.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.0",
+    "@types/vscode": "^1.75.0",
+    "typescript": "^5.0.0"
+  }
+}
