@@ -66,6 +66,8 @@ private:
 				handle_did_open(msg);
 			else if (method == "textDocument/didChange")
 				handle_did_change(msg);
+			else if (method == "textDocument/hover")
+				handle_hover(msg);
 			else if (method == "shutdown")
 				send_response(msg["id"], nullptr);
 			else if (method == "exit")
@@ -81,7 +83,8 @@ private:
 	{
 		json capabilities = {
 			{"textDocumentSync", 1},
-			{"completionProvider", {{"triggerCharacters", {"<", " "}}}}
+			{"completionProvider", {{"triggerCharacters", {"<", " "}}}},
+			{"hoverProvider", true}
 		};
 		
 		send_response(msg["id"], {{"capabilities", capabilities}});
@@ -101,6 +104,19 @@ private:
 		publish_diagnostics(uri, text);
 	}
 	
+	void handle_hover(const json& msg)
+	{
+		int line = msg["params"]["position"]["line"];
+		int character = msg["params"]["position"]["character"];
+		std::string uri = msg["params"]["textDocument"]["uri"];
+		
+		json hover_result = {
+			{"contents", "Hover information for position (" + std::to_string(line) + "," + std::to_string(character) + ")"}
+		};
+		
+		send_response(msg["id"], hover_result);
+	}
+	
 	void publish_diagnostics(const std::string& uri, const std::string& text)
 	{
 		auto result = sceneIO::tdr::SceneLanguageService::parse_content(text);
@@ -113,7 +129,7 @@ private:
 					{"start", {{"line", error.location.line - 1}, {"character", error.location.column - 1}}},
 					{"end", {{"line", error.location.line - 1}, {"character", error.location.column}}}
 				}},
-				{"severity", 1}, // Error
+				{"severity", error.getErrorLevel()},
 				{"message", error.getMessage()}
 			});
 		}

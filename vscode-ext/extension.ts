@@ -31,7 +31,7 @@ export function activate(context: ExtensionContext)
 	
 	const clientOptions: LanguageClientOptions = {
 		documentSelector: [
-			{ scheme: 'file', language: 'scene' }
+			{ scheme: 'file', language: 'tdr' }
 		],
 		synchronize: {
 			fileEvents: workspace.createFileSystemWatcher('**/*.{tdr,traceurs-de-rayons,paf}')

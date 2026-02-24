@@ -10,13 +10,13 @@
     "Programming Languages"
   ],
   "activationEvents": [
-    "onLanguage:scene"
+    "onLanguage:tdr"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "languages": [
       {
-        "id": "scene",
+        "id": "tdr",
         "extensions": [
           ".tdr",
           ".traceurs-de-rayons",
@@ -27,9 +27,9 @@
     ],
     "grammars": [
       {
-        "language": "scene",
-        "scopeName": "text.scene",
-        "path": "./syntaxes/scene.tmLanguage.json"
+        "language": "tdr",
+        "scopeName": "text.tdr",
+        "path": "./syntaxes/tdr.tmLanguage.json"
       }
     ]
   },

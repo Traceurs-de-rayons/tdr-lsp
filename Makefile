@@ -72,7 +72,10 @@ build-extension: compile-ts
 	@cd vscode-ext && npx @vscode/vsce package
 	@echo "Extension built successfully"
 
-all: copy-binary compile-ts build-extension
+install-extension:
+	@code --install-extension vscode-ext/tdr-scene-language-0.1.0.vsix
+
+all: copy-binary compile-ts build-extension install-extension
 	@echo ""
 	@echo "Full build pipeline completed!"
 	@echo " - C++ binary built"
