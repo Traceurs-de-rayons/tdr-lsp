@@ -7,7 +7,10 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../scene-io scene-io-build EXCLUDE_FROM_ALL)
 
-add_executable(tdr-lsp lsp/main.cpp)
+add_executable(tdr-lsp 
+	lsp/main.cpp
+	lsp/LSPServer.cpp
+)
 
 target_compile_features(tdr-lsp PUBLIC cxx_std_23)
 
