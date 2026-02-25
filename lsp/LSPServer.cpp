@@ -115,9 +115,23 @@ void LSPServer::handle_hover(const json& msg)
 	int line = msg["params"]["position"]["line"];
 	int character = msg["params"]["position"]["character"];
 	std::string uri = msg["params"]["textDocument"]["uri"];
-	
+
+	std::string text = get_document_text(uri);
+	auto result = service_.parse_content(text);
+
+	std::string hover_text = SceneLanguageService::get_hover(result.ast, sch, line + 1, character + 1);
+
+	if (hover_text.empty())
+	{
+		send_response(msg["id"], nullptr);
+		return;
+	}
+
 	json hover_result = {
-		{"contents", "Hover information for position (" + std::to_string(line) + "," + std::to_string(character) + ")"}
+		{"contents", {
+			{"kind", "markdown"},
+			{"value", hover_text}
+		}}
 	};
 	
 	send_response(msg["id"], hover_result);
