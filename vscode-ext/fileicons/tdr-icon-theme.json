@@ -1,0 +1,22 @@
+{
+	"iconDefinitions": {
+		"_tdr_dark": {
+			"iconPath": "../icons/tdr-dark.svg"
+		},
+		"_tdr_light": {
+			"iconPath": "../icons/tdr-light.svg"
+		}
+	},
+	"fileExtensions": {
+		"tdr": "_tdr_dark",
+		"paf": "_tdr_dark",
+		"traceurs-de-rayons": "_tdr_dark"
+	},
+	"light": {
+		"fileExtensions": {
+			"tdr": "_tdr_light",
+			"paf": "_tdr_light",
+			"traceurs-de-rayons": "_tdr_light"
+		}
+	}
+}

@@ -10,7 +10,8 @@
     "Programming Languages"
   ],
   "activationEvents": [
-    "onLanguage:tdr"
+    "onLanguage:tdr",
+    "onStartupFinished"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -31,6 +32,13 @@
         "scopeName": "text.tdr",
         "path": "./syntaxes/tdr.tmLanguage.json"
       }
+    ],
+    "iconThemes": [
+      {
+        "id": "tdr-icons",
+        "label": "TDR File Icons",
+        "path": "./fileicons/tdr-icon-theme.json"
+      }
     ]
   },
   "files": [
@@ -39,6 +47,8 @@
     "language-configuration.json",
     "bin/**",
     "node_modules/**",
+    "icons/**",
+    "fileicons/**",
     "LICENSE.md"
   ],
   "scripts": {

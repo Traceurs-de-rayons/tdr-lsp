@@ -49,5 +49,6 @@ callgrind.out*
 node_modules
 vscode-ext/node_modules
 vscode-ext/out
+vscode-ext/bin
 
 *.vsix
