@@ -1,0 +1,55 @@
+{
+  "name": "TDR OBJ",
+  "scopeName": "source.tdr-obj",
+  "fileTypes": [],
+  "patterns": [
+    {
+      "name": "comment.line.number-sign.obj",
+      "match": "#.*$"
+    },
+    {
+      "name": "keyword.control.vertex.obj",
+      "match": "^\\s*(v|vn|vt|vp)\\b"
+    },
+    {
+      "name": "keyword.control.face.obj",
+      "match": "^\\s*(f|l|p)\\b"
+    },
+    {
+      "name": "keyword.control.object.obj",
+      "match": "^\\s*(o|g|s|mg|off)\\b"
+    },
+    {
+      "name": "keyword.control.material.obj",
+      "match": "^\\s*(mtllib|usemtl)\\b"
+    },
+    {
+      "name": "keyword.control.smooth.obj",
+      "match": "^\\s*(cstype|deg|bmat|step|curv|curv2|surf|parm|trim|hole|scrv|sp|end|con|lod|shadow_obj|trace_obj|ctech|stech)\\b"
+    },
+    {
+      "name": "string.unquoted.filename.obj",
+      "match": "(?<=mtllib\\s)\\S+.*$"
+    },
+    {
+      "name": "string.unquoted.material-name.obj",
+      "match": "(?<=usemtl\\s)\\S+.*$"
+    },
+    {
+      "name": "entity.name.object.obj",
+      "match": "(?<=(^\\s*o\\s|^\\s*g\\s))\\S+.*$"
+    },
+    {
+      "name": "constant.numeric.integer.obj",
+      "match": "(?<![\\w.-])-?\\d+(?![\\w.])"
+    },
+    {
+      "name": "constant.numeric.float.obj",
+      "match": "(?<![\\w-])-?\\d+\\.\\d*(?:[eE][+-]?\\d+)?(?![\\w])"
+    },
+    {
+      "name": "constant.numeric.face-index.obj",
+      "match": "-?\\d+(?:/-?\\d*){1,2}"
+    }
+  ]
+}

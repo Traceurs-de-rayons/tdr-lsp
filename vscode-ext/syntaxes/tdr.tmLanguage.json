@@ -6,6 +6,43 @@
       "match": "//.*$"
     },
     {
+      "name": "meta.embedded.object.raw.tdr",
+      "begin": "(<)(object)(?=[^>]*\\btype\\s*=\\s*\"raw\")",
+      "beginCaptures": {
+        "1": { "name": "punctuation.definition.tag.tdr" },
+        "2": { "name": "entity.name.tag.tdr" }
+      },
+      "end": "(</)(object)(>)",
+      "endCaptures": {
+        "1": { "name": "punctuation.definition.tag.tdr" },
+        "2": { "name": "entity.name.tag.tdr" },
+        "3": { "name": "punctuation.definition.tag.tdr" }
+      },
+      "patterns": [
+        {
+          "begin": "\\G",
+          "end": ">",
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.tag.tdr" }
+          },
+          "patterns": [
+            {
+              "name": "entity.other.attribute-name.tdr",
+              "match": "[a-zA-Z][a-zA-Z0-9_-]*"
+            },
+            {
+              "name": "string.quoted.double.tdr",
+              "begin": "\"",
+              "end": "\""
+            }
+          ]
+        },
+        {
+          "include": "source.tdr-obj"
+        }
+      ]
+    },
+    {
       "name": "meta.tag.tdr",
       "begin": "<([a-zA-Z][a-zA-Z0-9_-]*)",
       "beginCaptures": {

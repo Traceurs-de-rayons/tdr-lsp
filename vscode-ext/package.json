@@ -24,6 +24,11 @@
           ".paf"
         ],
         "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "tdr-obj",
+        "extensions": [".obj"],
+        "configuration": "./language-configuration.obj.json"
       }
     ],
     "grammars": [
@@ -31,6 +36,11 @@
         "language": "tdr",
         "scopeName": "text.tdr",
         "path": "./syntaxes/tdr.tmLanguage.json"
+      },
+      {
+        "language": "tdr-obj",
+        "scopeName": "source.tdr-obj",
+        "path": "./syntaxes/tdr-obj.tmLanguage.json"
       }
     ],
     "iconThemes": [
