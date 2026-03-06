@@ -1,6 +1,22 @@
 #include "LSPServer.hpp"
 #include "core-utils.hpp"
 #include <sstream>
+#include <filesystem>
+
+static std::string uri_to_path(const std::string& uri)
+{
+	if (uri.substr(0, 7) == "file://")
+		return uri.substr(7);
+	return uri;
+}
+
+// static std::string uri_to_dir(const std::string& uri)
+// {
+// 	namespace fs = std::filesystem;
+// 	std::string path = uri_to_path(uri);
+// 	if (path.empty()) return "";
+// 	return fs::path(path).parent_path().string();
+// }
 
 void LSPServer::run()
 {
@@ -139,7 +155,7 @@ void LSPServer::handle_hover(const json& msg)
 
 void LSPServer::publish_diagnostics(const std::string& uri, const std::string& text)
 {
-	auto result = SceneLanguageService::parse_content(text);
+	auto result = SceneLanguageService::parse_content(text, uri_to_path(uri));
 	
 	json diagnostics = json::array();
 	for (const auto& error : result.errors)
@@ -166,7 +182,7 @@ void LSPServer::handle_document_color(const json& msg)
 	{
 		std::string text = get_document_text(msg["params"]["textDocument"]["uri"]);
 		
-		auto result = service_.parse_content(text);
+		auto result = service_.parse_content(text, uri_to_path(msg["params"]["textDocument"]["uri"]));
 		
 		json colors = json::array();
 
